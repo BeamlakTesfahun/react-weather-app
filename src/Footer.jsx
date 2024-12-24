@@ -13,7 +13,7 @@ export default function Footer() {
       </a>{" "}
       and is open-sourced on{" "}
       <a
-        href="https://github.com/BeamlakTesfahun/my-weather-app"
+        href="https://github.com/BeamlakTesfahun/react-weather-app"
         target="_blank"
         rel="noreferrer"
       >
@@ -21,7 +21,7 @@ export default function Footer() {
       </a>{" "}
       and hosted on{" "}
       <a
-        href="https://transcendent-khapse-2ad2da.netlify.app/"
+        href="https://beamlak-weather-app-react.netlify.app/"
         target="_blank"
         rel="noreferrer"
       >
