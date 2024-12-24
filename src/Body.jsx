@@ -16,7 +16,7 @@ export default function Body() {
           <h1 className="weather-app-city">Addis Ababa</h1>
           <p className="weather-app-data">
             <span>Monday, 12:30 PM</span>
-            <span>,</span>
+            <span>, </span>
             <span className="description">Partly Cloudy</span>
             <br />
             <span> Humidity: </span>
