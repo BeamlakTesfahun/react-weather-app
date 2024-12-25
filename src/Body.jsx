@@ -31,7 +31,7 @@ export default function Body() {
             <ReactAnimatedWeather
               icon="CLEAR_DAY"
               color="black"
-              size="60"
+              size={60}
               animate={true}
             />
             {/* <img
@@ -54,7 +54,7 @@ export default function Body() {
               <ReactAnimatedWeather
                 icon={weatherIcons[day]}
                 color="black"
-                size="60"
+                size={60}
                 animate={true}
               />
             </div>
