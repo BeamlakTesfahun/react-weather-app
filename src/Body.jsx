@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactAnimatedWeather from "react-animated-weather";
 
 export default function Body({ weatherData, forecastData }) {
@@ -10,6 +10,15 @@ export default function Body({ weatherData, forecastData }) {
   //   Fri: "SNOW",
   // };
 
+  const [unit, setUnit] = useState("C");
+
+  const convertTemperature = (temp) => {
+    if (unit === "C") {
+      return temp; // Celsius is default
+    } else {
+      return Math.round(temp * 1.8 + 32); // Convert to Fahrenheit
+    }
+  };
   // for formatting current date and time
   const getCurrentDateTime = () => {
     const now = new Date();
@@ -50,7 +59,7 @@ export default function Body({ weatherData, forecastData }) {
           <div className="weather-app-data-container">
             <div className="weather-app-emoji">
               <img
-                src={`http://openweathermap.org/img/wn/${weatherData.icon}.png`}
+                src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
                 alt={weatherData.description}
                 className="weather-app-emoji"
               />
@@ -66,8 +75,40 @@ export default function Body({ weatherData, forecastData }) {
               className="weather-app-emoji"
             /> */}
             </div>
-            <div className="weather-app-temp">{weatherData.temperature}</div>
-            <div className="weather-app-unit">°C</div>
+            <div className="weather-app-temp">
+              {convertTemperature(weatherData.temperature)}°{unit}
+            </div>
+            <div className="weather-app-unit">
+              <a
+                href="#"
+                style={{
+                  textDecoration: unit === "C" ? "underline" : "none",
+                  color: unit === "C" ? "black" : "blue",
+                  cursor: "pointer",
+                }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setUnit("C");
+                }}
+              >
+                °C
+              </a>{" "}
+              |{" "}
+              <a
+                href="#"
+                style={{
+                  textDecoration: unit === "F" ? "underline" : "none",
+                  color: unit === "F" ? "black" : "blue",
+                  cursor: "pointer",
+                }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setUnit("F");
+                }}
+              >
+                °F
+              </a>
+            </div>
           </div>
         </div>
       )}
@@ -82,7 +123,7 @@ export default function Body({ weatherData, forecastData }) {
             </p>
             <div className="weather-forecast-icon">
               <img
-                src={`http://openweathermap.org/img/wn/${day.weather[0].icon}.png`}
+                src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                 alt={day.weather[0].description}
               />
               {/* <ReactAnimatedWeather
@@ -101,9 +142,11 @@ export default function Body({ weatherData, forecastData }) {
               <span className="weather-forecast-temperature">
                 {Math.round(day.main.temp_min)}°C
               </span>
+              {console.log("min", day.main.temp_min)}
               <span className="weather-forecast-temperature">
                 {Math.round(day.main.temp_max)}°C
               </span>
+              {console.log("max", day.main.temp_max)}
             </div>
           </div>
         ))}

@@ -28,6 +28,7 @@ export default function Header() {
         const dailyData = forecastResponse.data.list.filter((item) =>
           item.dt_txt.includes("12:00:00")
         );
+        // console.log("daily data", dailyData);
         setForecast(dailyData);
       })
       .catch((error) => {
@@ -85,6 +86,7 @@ export default function Header() {
         />
       </form>
       <Body weatherData={weather} forecastData={forecast} />
+      {console.log("forecast data", forecast)}
     </div>
   );
 }
